@@ -61,3 +61,50 @@ sudo mv /usr/share/applications/org.gnome.Settings.desktop /usr/share/applicatio
 <!-- installing ext to hide dock -->
 
 sudo apt install gnome-tweaks gnome-shell-extensions -y
+
+<!-- extension installed correctly, but due to the server version, have to install the extension to chromium -follow prompts- -->
+
+https://extensions.gnome.org/
+
+<!-- then -->
+
+sudo apt install chrome-gnome-shell gnome-browser-connector
+
+<!-- having issues installing dash to dock. trying to clone it from git -->
+
+git clone https://github.com/micheleg/dash-to-dock.git
+sudo apt install make gettext
+cd dash-to-dock
+make
+make install
+
+<!-- ran  into an issue here. had to download -->
+
+sudo apt install sassc
+make clean
+make
+make install
+
+<!-- I think install is in the wrong folder trying to fix this. -->
+
+gnome-extensions enable dash-to-dock@micxgx.gmail.com
+
+<!-- this cmd below was unnecesarry I believe -->
+
+glib-compile-schemas ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas
+
+<!-- disable the app icon: 9 dots -->
+
+GSETTINGS_SCHEMA_DIR=~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas gsettings set org.gnome.shell.extensions.dash-to-dock show-show-apps-button false
+
+<!-- OK FROM HERE. IT LOOKS SATISFACTORY. I just need to take the settings icon out of the top right and keyboard. splashtop -->
+
+<!-- cant get the setting icon on teh OSK to not show. skipping for now. attempting splashtop
+    I am able to get into the network via
+    "other locations in file explorer
+
+    double clicked: Splashtop_Streamer_Ubuntu_amd64.deb
+
+    I have to install a tool for deb files
+
+ -->
