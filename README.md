@@ -34,10 +34,10 @@ nano ~/.config/autostart/chromium-kiosk.desktop
 [Desktop Entry]
 Type=Application
 Name=Kiosk Browser
-Exec=chromium --kiosk http://odoo-test.arandell.com/
+Exec=chromium --kiosk http://odoo-test.arandell.com/odoo/barcode
 X-GNOME-Autostart-enabled=true
 
-<!-- -disable screen sleep -->
+<!-- -disable screen sleep. dont need to do this if done on ui-->
 
 gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
@@ -136,3 +136,34 @@ sudo nano /etc/gdm3/custom.conf
 
 mkdir -p ~/.config/AutoStart
 nano ~/.config/autostart/chromium-kiosk.desktop
+
+<!-- had an issue here. I forgot to install chromium -->
+
+sudo snap install chromium
+
+sudo timeshift --create --comments "Kiosk user created" --snapshot-device /dev/dm-0
+
+<!-- going to disable settings -->
+
+<!-- clears if from the dock and app launcher. reboot. its still there -->
+
+gsettings set org.gnome.shell favorite-apps "[]"
+
+mkdir -p ~/.local/share/applications
+cp /usr/share/applications/org.gnome.Settings.desktop ~/.local/share/applications/
+chmod -x ~/.local/share/applications/org.gnome.Settings.desktop
+
+<!-- restore -->
+
+sudo timeshift --restore
+
+<!-- had issues with ttrying to just disable settings for kiosk user. but could not get it to stick. just did it globally -->
+
+sudo mv /usr/share/applications/org.gnome.Settings.desktop /usr/share/applications/org.gnome.Settings.desktop.bak
+
+sudo timeshift --create --comments "settings disable success" --snapshot-device /dev/dm-0
+
+<!-- attempting install for extension to get rid of app icon 9dots -->
+<!-- ok followed the above notes. went kind of smoothly. it works -->
+
+sudo timeshift --create --comments "app icon disable success" --snapshot-device /dev/dm-0
