@@ -129,3 +129,10 @@ sudo timeshift --gui
 sudo timeshift --create --comments "Kiosk user created" --snapshot-device /dev/dm-0
 
 <!-- MOVING ON WITH KIOSK INSTALLATION -->
+
+sudo nano /etc/gdm3/custom.conf
+
+<!-- create dir and file if does not already exist -->
+
+mkdir -p ~/.config/AutoStart
+nano ~/.config/autostart/chromium-kiosk.desktop
