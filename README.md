@@ -98,7 +98,7 @@ glib-compile-schemas ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.g
 GSETTINGS_SCHEMA_DIR=~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas gsettings set org.gnome.shell.extensions.dash-to-dock show-show-apps-button false
 
 <!-- OK FROM HERE. IT LOOKS SATISFACTORY. I just need to take the settings icon out of the top right and keyboard. splashtop -->
-
+<!-- note. there are some issues back in the admin user. The settings in kiosk are supposed to stick over there but. I am seeing some glitches on the admin side -->
 <!-- cant get the setting icon on teh OSK to not show. skipping for now. attempting splashtop
     I am able to get into the network via
     "other locations in file explorer
@@ -108,3 +108,24 @@ GSETTINGS_SCHEMA_DIR=~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.g
     I have to install a tool for deb files
 
  -->
+
+sudo apt install gdebi
+
+<!-- install is good. device shows up in splashtop. but, can not splashtop into it becasue of wayland seession. splashtop does not support wayland. we have to swithc to x11 session  -->
+
+<!-- STARTING OVER ... SPLASHTOP BROKE EVERYTHING -->
+
+<!-- installing timeshift -->
+
+sudo apt install timeshift -y
+sudo timeshift --create --comments "Post-GNOME, kiosk user created"
+
+<!-- error here: Failed to create snapshot: Maybe a wrong directory. fixing directory -->
+
+sudo timeshift --gui
+
+<!-- the above gave an error because it was trying to save to the wrong partiiton. also sudo timeshift --gui also failed. below is what worked -->
+
+sudo timeshift --create --comments "Kiosk user created" --snapshot-device /dev/dm-0
+
+<!-- MOVING ON WITH KIOSK INSTALLATION -->
