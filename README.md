@@ -167,3 +167,13 @@ sudo timeshift --create --comments "settings disable success" --snapshot-device 
 <!-- ok followed the above notes. went kind of smoothly. it works -->
 
 sudo timeshift --create --comments "app icon disable success" --snapshot-device /dev/dm-0
+exit
+
+<!-- TODO: MAYBE LOCKDOWN CHROME ACCESS AND KEYBOARD SETTINGS ACCESS
+ -->
+
+ <!-- BEGINING CLONEZILLA PROCESS. -->
+
+https://clonezilla.org/downloads/download.php?branch=stable
+
+ <!-- CPU Architecture: amd64, File Type: ISO -->
