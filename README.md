@@ -177,3 +177,25 @@ exit
 https://clonezilla.org/downloads/download.php?branch=stable
 
  <!-- CPU Architecture: amd64, File Type: ISO -->
+ <!-- used belenaEtccher to clone. Was weary about this, because I made an attempt with belenaEtcher in the past and it was glitch.
+    seems like it worked successfully now though.
+    I need to usbs for this process. The surface only has one usb port. I could not find a functioning usb hub, so I had to work around by
+    partitioning the same usb. A few extra steps was involed, including downloading 7zip and manually extracting the iso to the clonezilla 
+    partition, becasue belenaEtcher will clone the whole stick and not jsut the partiition.
+
+    ok. clone looks successfull. Checking to see what kind of post edits I need to do.
+    
+  -->
+  <!-- disable sign in a suspend -->
+
+gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
+<!-- kiosk user can still access settings thru: Power Mode, Bluetooth.
+    if I turn all this off can I still connect to bluetooth
+ -->
+
+sudo apt remove gnome-control-center
+
+ <!-- the above works. but choosing to just leave this as a post set up. After bluetooth install and any other necessary installs. I can shut it down. -->
+ <!-- I have a wifi issue. The wifi icon has been missing. IDK when it started to be missing. This maybe an issue and I need it to come back -->
