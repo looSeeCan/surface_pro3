@@ -261,3 +261,6 @@ sudo apt remove gnome-control-center
 
 sudo mv /usr/share/applications/nm-connection-editor.desktop /usr/share/applications/nm-connection-editor.desktop.bak
 sudo timeshift --create --comments "disabled settings and edited the search bar access to search for applications" --snapshot-device /dev/dm-0
+
+<!-- clonezilla -->
+<!-- failed to clone -->
