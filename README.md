@@ -237,3 +237,27 @@ device-image > local_dev > preffered_location > CZ_IMG > Begginner_accept_the_de
 device-image > local_dev > preffered_location > img_that_was_made_above > begginner > restoredisk > img_that_was_made_above > use_partition_table_from_img
 
 <!-- note the above steps do have options inbetween. the steps listed are the important ones -->
+
+<!-- POST CLONE CHECKS-->
+<!-- making sure that there are no ways that the user has to login. If need to switch to admin, can just turn this off. or ssh.-->
+
+gsettings set org.gnome.desktop.lockdown disable-log-out true
+gsettings set org.gnome.desktop.lockdown disable-user-switching true
+
+<!-- the above are optional. going to leave them for now and see what happend durihg testing. just inform user not to log out
+    no. we need no log in so there is never a password that needs to be used.
+    final: disabled the two above settings
+ -->
+
+<!-- disable settings access entirely. timeshift here first -->
+
+sudo timeshift --create --comments "disabled log out and user switching so there is never a prompt for a password to login" --snapshot-device /dev/dm-0
+
+<!-- disable settings -->
+
+sudo apt remove gnome-control-center
+
+<!-- tried to disable the search bar, but it seems like you cant so I had to diable the desktop applicaction icons individually -->
+
+sudo mv /usr/share/applications/nm-connection-editor.desktop /usr/share/applications/nm-connection-editor.desktop.bak
+sudo timeshift --create --comments "disabled settings and edited the search bar access to search for applications" --snapshot-device /dev/dm-0
