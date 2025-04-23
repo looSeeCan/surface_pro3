@@ -199,3 +199,41 @@ sudo apt remove gnome-control-center
 
  <!-- the above works. but choosing to just leave this as a post set up. After bluetooth install and any other necessary installs. I can shut it down. -->
  <!-- I have a wifi issue. The wifi icon has been missing. IDK when it started to be missing. This maybe an issue and I need it to come back -->
+ <!-- So the icon is always missing. I only have wifi because of the initial ubuntu server install. It connects to the specified wifi that I set theere and 
+    then everything gets cloned over. I can no longer access wifi with out makiing drastic tweaks.
+  -->
+<!-- ATTENMPTING TO FIX -->
+
+sudo apt install network-manager -y
+ls /etc/netplan/
+sudo nano /etc/netplan/50-cloud-init.yaml
+
+<!-- add the "renderer" key value pair to the .yaml file -->
+
+network:
+version: 2
+renderer: NetworkManager
+
+sudo netplan apply
+sudo systemctl restart NetworkManager
+
+<!-- check now if NetworkManager is managing WiFi -->
+
+nmcli device status
+nmcli device wifi list
+
+<!-- I can controll wifi on cli, but it does look like the icon has appeared now. This is satisfactory. -->
+<!-- create a timeshift here. -->
+
+sudo timeshift --create --comments "fixed the wifi issue" --snapshot-device /dev/dm-0
+
+<!-- clonezilla process -->
+<!-- selecting options on the clonezilla process -->
+
+device-image > local_dev > preffered_location > CZ_IMG > Begginner_accept_the_default_options > savedisk > zip
+
+<!-- selecting options for eh actual clone on a device -->
+
+device-image > local_dev > preffered_location > img_that_was_made_above > begginner > restoredisk > img_that_was_made_above > use_partition_table_from_img
+
+<!-- note the above steps do have options inbetween. the steps listed are the important ones -->
