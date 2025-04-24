@@ -283,3 +283,6 @@ sudo apt remove gnome-control-center
 
 <!-- reconnects fine -->
 <!--  -->
+<!-- time shift here -->
+
+sudo timeshift --create --comments "cloned 10 for Maple Grove. Figured that I should leave settings on untill after post tweaks are done." --snapshot-device /dev/dm-0
