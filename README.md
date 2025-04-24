@@ -264,3 +264,22 @@ sudo timeshift --create --comments "disabled settings and edited the search bar 
 
 <!-- clonezilla -->
 <!-- failed to clone -->
+<!-- so something was curupted with the master surface. had to boot into the clonezilla shell and: -->
+
+lsblk
+sudo fsck /dev/ubuntu-vg/ubuntu-lv
+
+<!-- realized at the end of the coloning option that you can run this check. -->
+
+<!-- CLONING 10 FOR MG -->
+<!-- I have to turn on settings for now, so we can initially tweak settings according to needs: wifi, bluetooth.. etc -->
+<!-- turned on manually to all devices cloned and turned back on on Master. -->
+
+sudo apt install gnome-control-center -y
+
+<!-- connected bluetooth barcode scanner. turned settings back off -->
+
+sudo apt remove gnome-control-center
+
+<!-- reconnects fine -->
+<!--  -->
