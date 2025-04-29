@@ -286,3 +286,18 @@ sudo apt remove gnome-control-center
 <!-- time shift here -->
 
 sudo timeshift --create --comments "cloned 10 for Maple Grove. Figured that I should leave settings on untill after post tweaks are done." --snapshot-device /dev/dm-0
+
+<!-- TODO:
+   chromium --kiosk \
+  --proxy-server="0.0.0.0:1234" \
+  --proxy-bypass-list="your-allowed-site.com,localhost,127.0.0.1"
+
+Update autostart cmd
+[Desktop Entry]
+Type=Application
+Exec=chromium --kiosk https://your-allowed-site.com --proxy-server="0.0.0.0:1234" --proxy-bypass-list="your-allowed-site.com"
+Hidden=false
+X-GNOME-Autostart-enabled=true
+Name=Chromium Kiosk
+
+ -->
