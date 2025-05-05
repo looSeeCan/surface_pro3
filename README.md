@@ -302,6 +302,7 @@ Name=Chromium Kiosk
 
  -->
 
+<!-- May 5th 2025 -->
 <!-- ANSIBLE -->
 <!--  -->
 <!-- doing this project on Jim T's machine. Its a Windows Enterprise. -->
@@ -351,6 +352,8 @@ Exec=chromium --kiosk --user-data-dir=/tmp/kiosk-profile http://odoo-test.arande
 
 <!-- can now change hostname and chromium will autostart. this opens a temp/disposable profile each time. this does cause sign out to happen everytime a reboot happends -->
 
+sudo hostnamectl set-hostname example
+
 <!-- timeshift here -->
 
 sudo timeshift --create --comments "made some changes due to issues arising when changing the hostname." --snapshot-device /dev/dm-0
@@ -358,3 +361,9 @@ sudo timeshift --create --comments "made some changes due to issues arising when
 <!-- timeshift in kiosk user is fine, just include /home/kiosk in timeshift settings -->
 
 sudo timeshift --create --comments "included /home/kiosk in timeshift." --snapshot-device /dev/dm-0
+
+<!-- cloning. cloned using the date as the name of the clone -->
+<!-- good. tested changing hostnames, chromium is starting as usual.  -->
+<!-- continue with ansible -->
+
+<!-- copied ssh key to devices: .8 and .230. I can ssh without password -->
