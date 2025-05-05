@@ -301,3 +301,60 @@ X-GNOME-Autostart-enabled=true
 Name=Chromium Kiosk
 
  -->
+
+<!-- ANSIBLE -->
+<!--  -->
+<!-- doing this project on Jim T's machine. Its a Windows Enterprise. -->
+<!-- Windows enterprise does not support wsl 2 -->
+
+-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+<!-- go to Microsoft store and download -->
+
+-Ubunto 20.04.6 lts installer
+-run and setup username, pwd
+
+apt update && apt upgrade
+
+ansible --version
+
+<!-- Make sure ssh is enabled on devices. On control node generate ssh key -->
+
+-ssh-keygen
+-ssh-copy-id arandelluser@10.100.16.236
+
+<!-- Need to add the ssh key to each user that requires controlling. going to default to just adding the kiosk -->
+
+-ssh-copy-id kiosk@10.100.16.236
+
+<!-- Clean mainatainalble inventory -->
+
+- mkdir (check the folder structure in ansible)
+
+<!-- edit the hosts.ini file: -->
+
+-check file
+
+<!-- added another device. had to change the hostname -->
+
+- sudo hostnamectl set-hostname MF-FORK-TB-TEST1
+- sudo nano /etc/hosts
+- edit hostname accordingly
+- running to an issue here where I change the hostname and chromium does not autostart anymore
+  <!-- chromium creates a file "singleton" that has to be deleted everytime the hostname is changed or chromium will not start. in this dir: -->
+  -~/snap/chromium/common/chromium$
+  - sudo rm Singleton\*
+
+<!-- after removing the Singleton files, edit .config/autostart -->
+
+Exec=chromium --kiosk --user-data-dir=/tmp/kiosk-profile http://odoo-test.arandell.com/odoo/barcode
+
+<!-- can now change hostname and chromium will autostart. this opens a temp/disposable profile each time. this does cause sign out to happen everytime a reboot happends -->
+
+<!-- timeshift here -->
+
+sudo timeshift --create --comments "made some changes due to issues arising when changing the hostname." --snapshot-device /dev/dm-0
+
+<!-- timeshift in kiosk user is fine, just include /home/kiosk in timeshift settings -->
+
+sudo timeshift --create --comments "included /home/kiosk in timeshift." --snapshot-device /dev/dm-0
