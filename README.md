@@ -367,3 +367,51 @@ sudo timeshift --create --comments "included /home/kiosk in timeshift." --snapsh
 <!-- continue with ansible -->
 
 <!-- copied ssh key to devices: .8 and .230. I can ssh without password -->
+
+<!-- May 7th 2025 -->
+<!-- testing -->
+
+ansible -i inventory/hosts.ini kiosks -m ping
+
+<!-- the above did not work. Ran into an error:
+The error was: ModuleNotFoundError: No module named 'ansible.module_utils.six.moves'
+ -->
+
+<!-- On the Control Node:
+note that I did install on the devices also
+ -->
+
+<!-- Updating. So a combination of an ansible bug, which needed upgrading and the directory needed to be fixed -->
+
+sudo apt install python3-pip
+pip3 install --user --upgrade ansible
+echo 'export PATH=$HOME/.local/bin=$PATH >> ~/.bashrc source ~/.bashrc'
+
+<!-- It seems like I am having this issue becasue I am installing ansible as the user. I need to install ansible globally
+ -->
+
+pip3 uninstall ansible
+install globally
+sudo pip3 install --upgrade ansible
+
+confirm
+/usr/local/bin
+
+<!-- this now works -->
+
+ansible -i inventory/hosts.ini kiosks -m ping
+
+<!-- Before moving on, I want to test if on a new cloned device i have to install python manually like i did .
+  for the ohter devices
+-->
+
+-clone device
+-test if it will ping: ansible -i inventory/hosts.ini kiosks -m ping
+-it should fail because the python update that I did on the initial two devices are not on this one:
+
+    -cloned device: good
+    -changed hostname: chromium still autostarts
+    -ssh-copy-id kiosk@10.100.16.6
+    -ssh without password: good
+
+so it did not fail when I ansible pinged it. the update on the controll node was good enough.
