@@ -414,4 +414,28 @@ ansible -i inventory/hosts.ini kiosks -m ping
     -ssh-copy-id kiosk@10.100.16.6
     -ssh without password: good
 
-so it did not fail when I ansible pinged it. the update on the controll node was good enough.
+    <!-- so the above did not fail when I ansible pinged it. the update on the controll node was good enough. -->
+
+<!-- test playbook. update all devices -->
+
+<!-- create a new file in kiosk_project -->
+
+nano update_all.yml
+
+<!-- check the yaml file -->
+
+<!-- remember to be in the right dir -->
+
+ansible-playbook -i hosts.ini ../update_all.yml
+
+<!-- I have an error here about sudo.
+  sudo for kiosks uses a password. the "become: true" in the playbook says to run the comman with sudo. sudo needs a password
+ -->
+
+ansible-playbook -i hosts.ini ../update_all.yml --ask-become-pass
+
+ <!-- ok everything checks out from here. I created a playbook that updates and upgrades all device. 
+ 
+ TODO:Moving forward with this I need to make sure dns and dhcp is correct
+  for these devices
+  -->
