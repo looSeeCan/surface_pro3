@@ -439,3 +439,6 @@ ansible-playbook -i hosts.ini ../update_all.yml --ask-become-pass
  TODO:Moving forward with this I need to make sure dns and dhcp is correct
   for these devices
   -->
+
+<!-- MAY 8TH 2025 -->
+<!-- Steve has requested 3 devices for autocount. I have three ready. Probably just have to switch autostart to autocount.arandell.com. -->
