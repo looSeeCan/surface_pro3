@@ -442,3 +442,36 @@ ansible-playbook -i hosts.ini ../update_all.yml --ask-become-pass
 
 <!-- MAY 8TH 2025 -->
 <!-- Steve has requested 3 devices for autocount. I have three ready. Probably just have to switch autostart to autocount.arandell.com. -->
+<!-- made apporpriate changes to the three devices:
+  hostnamectl, edited hosts.ini
+  ansible ping worked
+  when running update playbook, ran into an error:
+   -something about: cant fine the efi system partition. I did not have an issue with the effeted devices prior. Im not sure if a reboot did this or not.
+
+ -->
+ <!-- fixed the above on the effected devices-->
+
+sudo dpkg --configure -a
+sudo apt install -f
+
+<!-- ^solved the issue for now. rebooted and confirmed -->
+
+ <!-- AUTOSTART autocount -->
+ <!--edited autostart file to this-->
+
+Exec=chromium --kiosk --user-data-dir=/tmp/kiosk-profile http://autocount.arandell.com
+
+<!-- works but we need it to be able to open tabs when
+  we click on the links. from the setup on odoo, the tabs and the search bar is disabled for the chromium browser
+ -->
+
+ <!-- had to troubleshoot the ^ above with a couple things
+    when i added the teh new Exec line. it gave me the sigleton error again. deleted the singleton files then added :
+      -->
+
+      Exec=chromium --user-data-dir=/tmp/kiosk-profile http://autocount.arandell.com
+
+<!-- tnis one^ eventually autostarts with chromium showning all the tabs. this is satisfactory. will see what kind of constraints we need after testing -->
+<!-- actually its not satisfactory. the user will be able to close chromium. you can search and reopen chromium but the config file set it to where chromium is a
+  temp and it will not let you back into the url
+ -->
