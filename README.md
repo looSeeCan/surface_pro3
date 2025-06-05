@@ -436,7 +436,7 @@ ansible-playbook -i hosts.ini ../update_all.yml --ask-become-pass
 
  <!-- ok everything checks out from here. I created a playbook that updates and upgrades all device. 
  
- TODO:Moving forward with this I need to make sure dns and dhcp is correct
+ Todd: -complete- Moving forward with this I need to make sure dns and dhcp is correct
   for these devices
   -->
 
@@ -474,4 +474,57 @@ Exec=chromium --kiosk --user-data-dir=/tmp/kiosk-profile http://autocount.arande
 <!-- tnis one^ eventually autostarts with chromium showning all the tabs. this is satisfactory. will see what kind of constraints we need after testing -->
 <!-- actually its not satisfactory. the user will be able to close chromium. you can search and reopen chromium but the config file set it to where chromium is a
   temp and it will not let you back into the url
+  im going to try to  make the profile a persistent profile instead of a temp, but I remember I made it a temp for a reason
  -->
+
+--user-data-dir=/home/kiosk/.kiosk-profile
+
+<!-- still acting the same I think its because I change the Exec, I have to delete the singelton files again-->
+<!-- IM AN IDIOT. THE ISSUE WAS THAT IT WAS AUTOMATICALLY "https" -->
+
+<!-- revert to  -->
+<!-- reverted back to this config and works good. had to rm the singleton files again to make chrome open up again after changing the config file
+  seems like I have to do the singleton thing everytime I change the config file
+  also got that error agin with the autoupdate playbook. I think it has to do with the singleton also... think anyways.
+ -->
+
+Exec=chromium --user-data-dir=/tmp/kiosk-profile http://autocount.arandell.com
+
+ <!-- May 21 2025 -->
+<!-- cloning a couple more for Corvin. -->
+<!-- we need to install vnc: Tight vnc with Xfce(lightweight desktop environment) -->
+
+sudo apt update
+sudo apt install xfce4 xfce4-goodies -y
+
+<!-- got a purple config screen about the display manager. press ok
+  selct: lightdm
+   -->
+
+  <!-- disable display manager immediately -->
+
+sudo systemctl disable lightdm
+sudo systemctl stop lightdm
+
+<!-- the above hs broken everything. abort -->
+
+<!-- JUNE 5TH 2025
+  Problem:
+  There is an odoo issue. I do not believe it is relaed to the tablet.
+ -->
+ <!-- making some edits to ansible before i move on
+   - had to make some edits to host.ini and update_all.yml
+   - creating and adding these devices to ansible. had to do some troubleshooing for update to work. something like the prior
+     update was interupted, had to: sudo dpkg --configure -a -->
+
+ <!-- only updates [kiosks_mg] -->
+
+ansible-playbook -i inventory/hosts.ini update_all.yml --limit kiosks_mg --ask-become-pass
+
+<!-- Bluetooth issue - bluetooth issue has been reported. it is dropping out with certain situations. When screeen is goes "black". I am assuming the power settings need to adjust to "never" sleep and the physical power button set to "nothing". -->
+
+  <!-- to see the bluetooth devices on kiosk -->
+
+bluetoothctl
+
+   <!-- I have to use 123Scan to edit the zebra bluetooth name. -->
