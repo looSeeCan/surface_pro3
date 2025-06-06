@@ -528,3 +528,13 @@ ansible-playbook -i inventory/hosts.ini update_all.yml --limit kiosks_mg --ask-b
 bluetoothctl
 
    <!-- I have to use 123Scan to edit the zebra bluetooth name. -->
+   <!-- question:
+     - is the zebra scanner and the dock specific to each other? Do they need to be together?
+     - can the cradle be hooked up to the kiosk > scanner no bluetooth to the kiosk, so we can bypass the blutooth situation or
+      do we require bluetooth
+       - yes. the hookup to the kiosk does work. it scans. will it charge it though
+    -->
+
+<!-- note: hostname in /etc/hosts might be causing an some issues
+  we changed some /etc/hosts files. we will see if that works out. It did work on Ray33
+-->
