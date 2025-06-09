@@ -538,3 +538,32 @@ bluetoothctl
 <!-- note: hostname in /etc/hosts might be causing an some issues
   we changed some /etc/hosts files. we will see if that works out. It did work on Ray33
 -->
+
+<!-- I did not use 123Scan for naming the scan guns. ended up just scanning the letters by hand. -->
+
+<!-- June 6th 2025 -->
+<!-- checking system logs -->
+
+journalctl -u NetworkManager --since "2 hours ago"
+
+<!-- ok so the time stamp on the log was not correct. after some investigation. it looks like the date and time settings is set to: UTC London -on the UI-. WTF! This maybe an issue. Fix this:-->
+
+timedatectl
+sudo timedatectl set-timezone America/Chicago
+
+<!-- for live monitoring -->
+
+sudo journalctl -u NetworkManager -f
+
+<!-- I've went and reconfigured all the devices that are currently running: 18,22,29,37,ray16,ray33
+  power options, datetime, hostname, labeling bluetooth.
+
+  I think maybe the .yaml file might be conflicting with connections.
+  36 is acting up. bluetooth is not working. chromium wont stratup. so I am going to timeshift 36 and configure from there.
+  starting with getting rid of the netplan issue to see if it will resolve the issue.
+
+  Im going to set it up on this newly cloned device and test
+   -so there is something going on with the way netplan and NetworkManger is working.
+   gotta do more research. Im not sure if I can just keep the netplan file or do I hav to go away from it.
+
+ -->
