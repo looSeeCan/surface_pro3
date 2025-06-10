@@ -565,5 +565,64 @@ sudo journalctl -u NetworkManager -f
   Im going to set it up on this newly cloned device and test
    -so there is something going on with the way netplan and NetworkManger is working.
    gotta do more research. Im not sure if I can just keep the netplan file or do I hav to go away from it.
+   just delete all the yaml files except for the approprite one: Test this on one machine.
 
  -->
+
+<!-- June 9 2025 -->
+<!-- wip18 is losing connection. All settings seem to check out at this point: power saving opitons, bluetooth, appropriate .yaml file
+ I am attempting to to edit some power management on the network manager. Wifi power save
+-->
+<!-- have to install -->
+
+iwconfig
+
+<!-- after installation iwconfig will show:
+  IEEE 802.11  ESSID:"Your-WiFi-Network"
+          Mode:Managed  Frequency:5.24 GHz  Access Point: XX:XX:XX:XX:XX:XX
+          Bit Rate=450 Mb/s   Tx-Power=22 dBm
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:on  <-- THIS IS THE SETTING
+          Link Quality=70/70  Signal level=-40 dBm
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:0   Missed beacon:0
+
+  I have to turn the "Power Management" off
+ -->
+
+ <!-- shows power save status -->
+
+iw dev wlp1s0 get power_save
+
+ <!-- there was a default configuration file: /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+   I changed the:
+   wifi.powersave = 3
+   to
+   wifi.powersave = 2
+
+   that turns it off
+   sudo systemctl restart NetworkManager
+
+   the power management is off
+
+   So, editing the default config file caused somehing to break. the screen went black, but did not sleep. it just goes black. you can turn it
+   back on, but goes black again.
+   reverted the default-wifi-powersave-on.conf 
+   created a config file in the same dir. 
+   default-wifi-powersave-on.conf.bak
+
+   the new file 99-......
+   now reflects that the "Power Management" is off. the screen is not doing that anymore
+   Its out there testing, but the log files show the same issue... 
+  -->
+
+<!-- wip34
+ I found some errors on this device. I am assuming its the same errors thats going on with wip18
+   edited so the Power save: off
+ -->
+
+   <!-- and created and edited this file: /etc/modprobe.d/mwifiex_pcie.conf
+   added thsi line to that file: options mwifiex_pcie ps_enable=0 -->
+
+    sudo nano /etc/modprobe.d/mwifiex_pcie.conf
