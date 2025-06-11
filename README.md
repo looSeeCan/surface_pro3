@@ -570,7 +570,9 @@ sudo journalctl -u NetworkManager -f
  -->
 
 <!-- June 9 2025 -->
-<!-- wip18 is losing connection. All settings seem to check out at this point: power saving opitons, bluetooth, appropriate .yaml file
+
+<!-- wip18 /////////////////////////////////////////////////
+ is losing connection. All settings seem to check out at this point: power saving opitons, bluetooth, appropriate .yaml file
  I am attempting to to edit some power management on the network manager. Wifi power save
 -->
 <!-- have to install -->
@@ -617,7 +619,21 @@ iw dev wlp1s0 get power_save
    Its out there testing, but the log files show the same issue... 
   -->
 
-<!-- wip34
+  <!-- right before I left wip18s connection started to slow down, with a loading on bottom right of odoo window. it looks like a very slow connection,
+  it has to be device specific, because wip34 was right next to it and i did speed tests on both and wip34 had a fast connection
+  rebooted wip18 and the speed test was good again.
+  could this be cache related, specic to the user kiosk autostart? or to eh nework settings I have been working on?
+  explore canceling NetworkManager and just using default. I remember I setup NetworkManager because my thought was that they needed a UI to connect to a network. June 10th 2025
+  -->
+  <!-- june11th -remember that this date here is s a category under wip18 
+    came in this morning and wip18 was damaged. replaced it with a windows os device to see if the error reporoduces there.
+    I am going to clone this device as is and use it for 36 also.
+  -->
+  <!-- so I replaced this device with a windows os device and it ran all day, but at the end of the day here approximately 4:40 it started to do the exact same thing as last night -check prior note^  
+    noticed that datetime was off on this one. fixed it and the speed test seems to be good. will check tomorow.
+  -->
+
+<!-- wip34 /////////////////////////////////////////////////////////////////////////////////////////////////
  I found some errors on this device. I am assuming its the same errors thats going on with wip18
    edited so the Power save: off
  -->
@@ -626,3 +642,52 @@ iw dev wlp1s0 get power_save
    added thsi line to that file: options mwifiex_pcie ps_enable=0 -->
 
     sudo nano /etc/modprobe.d/mwifiex_pcie.conf
+    sudo update-initramfs -u
+
+<!-- wip22 ///////////////////////////////////////////////////////////////////////////////////////////////////
+  this device is actiually loosing the UI wifi toggle switch
+ -->
+ <!-- list the pci devices -->
+
+lspci -k
+
+<!-- update firmware -->
+<!-- june 11th -->
+
+sudo apt update
+sudo apt install --reinstall linux-firmware
+sudo update-initramfs -u
+sudo reboot
+
+<!-- put it back on the truck and test after the above firmware updates -->
+<!-- it failed pretty fast. found a log that maybe a confilicting issue with netplan and networkmanager. going thru steps releive this -->
+<!-- remove .yaml file -->
+
+sudo systemctl stop NetworkManager
+sudo rm /etc/netplan/...yaml /etc/netplan/....yaml
+
+<!-- rm any /system-connections files. there are none in here -->
+
+sudo rm /etc/NetworkManager/system-connections/
+
+<!-- start networknamager -->
+
+sudo systemctl start NetworkManager
+
+<!-- this is not working. tried many routes. NetworkManager is stil creating a .yaml file in netplan.
+  Asked on reddit, waiting for reply
+  configured:
+  IEEE 802.11  ESSID:"Your-WiFi-Network"
+          Mode:Managed  Frequency:5.24 GHz  Access Point: XX:XX:XX:XX:XX:XX
+          Bit Rate=450 Mb/s   Tx-Power=22 dBm
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:on  <-- THIS IS THE SETTING
+          Link Quality=70/70  Signal level=-40 dBm
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:0  Invalid misc:0   Missed beacon:0
+
+ -->
+ <!-- back on truck -->
+
+<!-- update kernel -->
