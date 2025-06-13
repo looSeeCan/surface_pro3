@@ -691,3 +691,80 @@ sudo systemctl start NetworkManager
  <!-- back on truck -->
 
 <!-- update kernel -->
+
+<!-- JUNE 12TH 2025///////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ray16
+ made my rounds and went to check out this device. This truck has been idle in the same spot for a couple days.
+ I took the device on a stroll with me to check in on the ohter devices. didnt drop out. Performed an update and upgrade at this point. note that the turrets barely have amy changes on them accept for
+ powersave and datetime.
+
+ Lance says that besides the network related disconnect over night, everything was good, except for wip18,
+ which I know about. That is a windows device that is not autostartign, so I just had to open the browser.
+ All 5 devices on the floor are on line. I am working on a device with all the configuration edits that I mades
+ since I have been down here and clone them to replace 18 and 36 and more if possible to leave corvin with some extra devices
+ -->
+
+ <!-- Plan:
+   make/check the following edits/configuratiions that I have made on the devices since I have been here at MG:
+
+   power options, location -note: location is not turned on on the other devices-, datetime, hostnamectl, hosts, autostart, netplan, wifi power management
+   dont forget to rm Singleton files when changing autostart configuration/or any other that would casues chromium not to autostart
+   bluetooth is good
+   Cloning device:
+   reserve the ip and mac of master prior to cloning
+   check first clone to make sure macs and ips are diff
+   ^good
+
+   cloned new deviece
+   replacing mg-fork-tb-wip18 -was damaged-
+   removed mg-fork-tb-wip18 from dhcp
+   reserve ip and perform Singleton
+   had to do some updates
+
+   cloned new device
+   mg-fork-tb-wip36
+   performed the clone on the same device. -this device had some uniknown errors- make sure to remove from dhcp first
+   bluetooth is not working on this device
+   cloned a surface pro 5. new issues have arisen. no rotation and touch screen is off
+
+  below is the original setting from the original clone that I sent to MG. Will explore this setting if issues arise
+  Exec=chromium --kiosk --user-data-dir=/tmp/kiosk-profile http://odoo.arandell.com/odoo/barcode
+
+  -->
+
+<!-- wip18
+ scanned pallets are not reflecting in odoo. This maybe an odoo issue on the wip18 sign in?
+ DISREGARD THIS. User error. Todd was looking at the wrong category. This is working. Still need to replace with ubuntu device though
+
+ -->
+<!-- Surface Pro 5////////////////////////////////// -->
+<!-- New issue has arisen when attempting to clone to a Surface pro 5
+  touch screen and rotation not functional. only functional with keyboard attached. looks like i may need a kernal for pro5.
+  Attempting:
+ -->
+ <!-- Add the GPG key -->
+
+wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
+ | gpg --dearmor \
+ | sudo tee /etc/apt/trusted.gpg.d/linux-surface.gpg >/dev/null
+
+  <!-- Add the repo -->
+
+echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
+ | sudo tee /etc/apt/sources.list.d/linux-surface.list
+
+<!-- update and install  -->
+
+sudo apt update
+sudo apt install linux-image-surface linux-headers-surface iptsd libwacom-surface
+
+<!-- ok. this ended up going to the black GNU screen with options. When choosing the option "ubuntu": error: shim signature
+  I have to go and turn off sucure boot in bootloader.
+  After that it worked.. initially at least
+  double check the edits/configs.. some power options were still on
+ -->
+
+<!-- wip29 //////////////////////////////////////////////
+ approximately 4:05 wip29 is lost connection. It was going pretty strong. note: that there are very limited edits to this device. It was not being operated most of the time I was here.
+ this maybe good
+ -->
