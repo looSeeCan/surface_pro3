@@ -766,5 +766,41 @@ sudo apt install linux-image-surface linux-headers-surface iptsd libwacom-surfac
 
 <!-- wip29 //////////////////////////////////////////////
  approximately 4:05 wip29 is lost connection. It was going pretty strong. note: that there are very limited edits to this device. It was not being operated most of the time I was here.
- this maybe good
+ this maybe good. will investigate tomorrow before I leave
+
+
+<!-- JUNE 13 2025//////////////////////////////////// -->
+
+<!-- wip29 -->
+<!--
+ editing:
+ netplan
+ loacation
+ install updates
+ -->
+
+ <!-- identify: wifi harware, current kernel version, Os  -->
+
+lspci -nnk | grep -i net -A3
+uname -r
+lsb_release -a
+
+<!-- updating firmware -->
+
+sudo apt update
+sudo apt install --reinstall linux-firmware
+sudo reboot
+
+<!-- edited power management -->
+
+iwconfig
+
+<!-- trie to copy a clonezilla usb for Corvin, which would have the images of the surface pro 5 and surface pro 3, but am running into some complications
+ manually cloning the rest of his pro 5's for him before I leave
+
+ steps:
+ turn off secure boot, then use above cmds to install kernal
+
+
+set up complete.
  -->
