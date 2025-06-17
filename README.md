@@ -804,3 +804,15 @@ iwconfig
 
 set up complete.
  -->
+
+<!-- JUNE 17TH 2025
+  setting up devices to prepare for "testing sessions" per ticket from Trudy.
+  cloning last img from Maple Grove: mg-fork-tb-master
+
+  before clone, make sure surface is up to date.
+   - noticed here that the surface 3s are not able to connect to any network, but when I clone them it connects fine
+
+  netplan, update and upgrade, hostnamectl, singleton files, dhcp, ansible
+
+  TODO: just need to name bluetooth device
+ -->
