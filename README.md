@@ -816,3 +816,19 @@ set up complete.
 
   TODO: just need to name bluetooth device
  -->
+
+<!-- JUNE 19TH 2025
+  as issue has arisen with the surface pro5 setup. When the odoo web app crashes -most likely due to the underlying network issue- the surface boots to UEFI.
+  all booting config is correct. I tride to reproduce the error by going outside with an exact clone to replicate the low wifi signal. I can get the web app to crash but when I reboot I cant replicate the UEFI screen. according to Mitch, The UEFI screen is present and when he takes it to his office it boots directly to where it is supposed to, which is the autostart oddo page.
+  I think it has to do with the underlying network issue.
+
+  On another note. I was able to configure RDP. Turns out the setup that I have includes vnc and all I have to do is turn it on o the UI. I did and I had Corvin turn some on on his side. looks good
+   now when looking at one of the problematic pro5s I do see that the "powersave" option is tuned on. This explains why it is sleeping when I was ssh'd into it. but does it explain the UEFI issue?
+
+ -->
+
+<!-- JULY 2 2025 -->
+  <!-- Setting up some more for MG. Corvin still has four available. 
+    does not need much post set up here. the clone is configured from the last time I visited. Just turn on remote desktop.
+  
+  -->
