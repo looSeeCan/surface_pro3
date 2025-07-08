@@ -832,3 +832,19 @@ set up complete.
     does not need much post set up here. the clone is configured from the last time I visited. Just turn on remote desktop.
   
   -->
+
+<!-- JULY 7TH 2025
+  On site here at Maple Grove. Made my rounds to check configurations on tablets. Nothing out of the ordinary of whats been going on. Wifi has been worked on and it seems like it is supposed to be working.
+  Ideally, the devices should not be dropping out anymore.
+
+  Next day:
+   35 is having drop issues. It was an old device that was first shippe out. thought that was the issue, but it seems like there are still issues with drops
+   I replaced 35 with an unamed device to see if the drops are still happening.
+
+   Replaced the old 35 device with a new one. confifigurations checked:
+    netplan, update and upgrade, hostnamectl, singleton files, dhcp, ansible
+
+    5ghz
+     confirmed that there is a 5ghz connection. trying to connect to it atm. I might have to go to the floor in the morning and try to make a connection.
+
+ -->
