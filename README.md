@@ -847,4 +847,12 @@ set up complete.
     5ghz
      confirmed that there is a 5ghz connection. trying to connect to it atm. I might have to go to the floor in the morning and try to make a connection.
 
+  Next day:
+    I noticed that there were two devices with the host name wip34, though they had different ips. Alieviated that and made sure the right one was connected to the truck
+
+    Setting up 4 more devices and I noticed that the netplan file is the same netplan file being cloned over. I need to rm the file and connect via NetworkManager so each devices netplan file is unique.
+
+  Next day -friday-
+    turr16 had an issue. first time that that device had any issue. I did very minimal adjustments to the turr and they have been working fine. I think it's because they are static.
+    updating the master device here:
  -->
