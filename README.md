@@ -854,5 +854,52 @@ set up complete.
 
   Next day -friday-
     turr16 had an issue. first time that that device had any issue. I did very minimal adjustments to the turr and they have been working fine. I think it's because they are static.
-    updating the master device here:
+    updating the master device here: didnt finish this
+
+    there is a problem with the 4 devices that I brought over. I cant get the kernal to work that fixes the touch screen. attempting to clone one that already works
  -->
+
+<!-- JULY 18TH 2025
+  So we need to setup 12 devices for Menomonee Falls by Mondy. I am continuing to see the problem with the surface 5's -touch screen and rotation-.
+  I successfuuly fixed one here:
+    there seems to be an error showing up about a bad file: /etc/apt/sources.list.d/linux-surface.listecho
+    I removed this file and re-added the repo properly:
+ -->
+<!-- delete file -->
+
+sudo rm /etc/apt/sources.list.d/linux-surface.listecho
+
+<!-- re add the repo properly. I guess I added it wrong somewhere, which then created a file: linux-surface.listecho. its supposed to be: linux-surface.list -->
+
+echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
+| sudo tee /etc/apt/sources.list.d/linux-surface.list
+
+<!-- I am not sure if this will be the fix that I need with the 4 at MG. I hope so. JUST NEED TO CHECK IF THAT BAD FILE IS THERE. -->
+<!-- NEXT STEP HERE AT MF:
+  I need to clone this pro5 as a master and prepare the 12 that we need here.
+ -->
+
+<!-- update and upgrading may break the surface kernal
+  lets test:
+    1.clone a surface5 from the latest clone -the surface3-
+    2. do not update upgrade
+    3. confirm that touchscreen does not work
+    4. install the kernal to make it work
+    5. conifrm it works
+    6. the update upgrade
+    7. see if the kernal broke from the upgrade
+
+    check the above:
+      1. check
+      2. check
+      3. check
+      4. check
+      5. touchscreen does not work. rotion does. note: I just rm the netplan file and reconnected to "plant" so I can ssh.reinstalling iptsd and rebooting worked. touchscreen now works
+      6. no, a full update and upgrade did not break this one
+
+
+-->
+
+<!-- if it does break -->
+
+sudo apt install --reinstall linux-image-surface linux-headers-surface iptsd libwacom-surface
