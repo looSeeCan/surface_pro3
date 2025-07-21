@@ -903,3 +903,19 @@ echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
 <!-- if it does break -->
 
 sudo apt install --reinstall linux-image-surface linux-headers-surface iptsd libwacom-surface
+
+<!-- JULY 22 2025
+  It seems like the issue above is working. I need to move on and try to clone a working pro5
+
+  ok. so I have ran into this issue beforen where there is a Partclone error. Steps to repair:
+    just select the options to: "interactively check/repair fsck"
+    choose option 1 for all questions. and yes to questions after that
+
+  got another error about not enough space. turns out I have to many failed images. deleted all unnecessay ones. Now I just have the pro3 and pro5 images.
+  cloning a pro5 right now with the pro5 image that was just created. note that this device was not initially updated in windows os at all to turning on. if successful, toouch screen and rotation should work. will not have to do the whole kernal step.
+  Rotation works, but touchscreen did not on intial boot. could not access anything, so I did a hard reset. Rebooted and now touch screen works...hmmmm. this is hwat happened in MG also. I thought that those devices
+  were not ready, when I called corvin, the issue resolved itself. They must of ran out of battery, shut down , theh when Corvin rebooted them, the issue resolved....hmmm...
+
+  <!-- TODO: remember to disconnect and reconnect from network so devices have their own unique connection to the network and not the cloned one!!! -->
+
+-->
