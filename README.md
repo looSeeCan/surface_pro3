@@ -919,3 +919,23 @@ sudo apt install --reinstall linux-image-surface linux-headers-surface iptsd lib
   <!-- TODO: remember to disconnect and reconnect from network so devices have their own unique connection to the network and not the cloned one!!! -->
 
 -->
+
+<!-- JULY 22 2025
+  Just cloned a surface pro 5 with same image and everything worked fine: touch screen and rotation. didnt have to reboot like I did above....hmmmm.....
+
+  In continuing with the setup for MF I am opting to not connect to the guns to bluetooth and just connect them to the cradle.
+  Bluetooth and wifi use the same bandwidth. so this may free it up... maybe.
+ -->
+  <!-- Master device -for both surface 3 and 5 master devices:
+    IS IT OK TO UPDATE AND HOW OFTEN?
+    need to do a snapshot
+    do update after snapshot
+    if breaks, then go back to snapshot
+  -->
+  <!-- just used the ui to snapshot. also this is an option
+    to make sure the kernal does not break during updates, but so far I have not had to use it. will look into this later
+   -->
+
+    sudo apt-mark hold linux-image-surface linux-headers-surface
+
+<!-- TODO: NEED TO CREATE MASTER DEVICE FOR SURFACE PRO 3. Besides that, most of the tablets are ready. I have 11 of them. should be good for now. -->
