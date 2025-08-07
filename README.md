@@ -939,3 +939,22 @@ sudo apt install --reinstall linux-image-surface linux-headers-surface iptsd lib
     sudo apt-mark hold linux-image-surface linux-headers-surface
 
 <!-- TODO: NEED TO CREATE MASTER DEVICE FOR SURFACE PRO 3. Besides that, most of the tablets are ready. I have 11 of them. should be good for now. -->
+
+<!-- AUGUST 6TH 2025
+  I have names for the devices. Going thru the 11 that I had setup and naming them.
+  changes being made:
+  hostnamectl
+  hosts
+  Singleton
+  dhcp
+  Label
+
+  completed list that Jeff sent:
+
+    435W. Press.
+    441W. Bindery.
+    425W. Ship 22.
+    443W. Ship 23.
+    382W. WIP.
+    834P. Roll 2.
+ -->
