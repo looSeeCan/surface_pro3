@@ -950,11 +950,22 @@ sudo apt install --reinstall linux-image-surface linux-headers-surface iptsd lib
   Label
 
   completed list that Jeff sent:
-
+    110p
+    112P
     435W. Press.
     441W. Bindery.
-    425W. Ship 22.
+    475W. Ship 22.
     443W. Ship 23.
     382W. WIP.
     834P. Roll 2.
  -->
+
+<!-- AUGUST 12 2025
+  contiuning with an updated list:
+
+ -->
+
+ <!-- ran into an issue with dhcp -->
+ <!-- refresh dhcp -->
+
+nmcli device reapply wlan0
