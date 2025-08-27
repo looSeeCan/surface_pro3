@@ -969,3 +969,24 @@ sudo apt install --reinstall linux-image-surface linux-headers-surface iptsd lib
  <!-- refresh dhcp -->
 
 nmcli device reapply wlan0
+
+## AUGUST 27 2025
+
+Ive completed a list that Jeff gave me thus far. -Check all finished devices in dhcp-
+Jeff and I have installed them on to the appropriate forklifts
+
+Ive come upon an issue with RDP into the kiosks
+the kiosks does not seem to want to hold on to the password. I change the password, I am able to RDP into it, but when it reboots the password resets and/or I can not rdp without attempting to edit the "Desktop Share"
+
+### Install & enable GNOME Remote Desktop
+
+- grdtl status <!--check status -->
+- sudo apt update
+- sudo apt install -y gnome-remote-desktop
+- systemctl --user enable --now gnome-remote-desktop.service
+
+### Enable the RDP backend and set credentials
+
+- grdctl rdp enable
+- grdctl rdp set-credentials kiosk 'YourStrongPassword!'
+<!-- TODO: this did not work, continuing to troubleshoot -->
