@@ -990,3 +990,13 @@ the kiosks does not seem to want to hold on to the password. I change the passwo
 - grdctl rdp enable
 - grdctl rdp set-credentials kiosk 'YourStrongPassword!'
 <!-- TODO: this did not work, continuing to troubleshoot -->
+
+## SEP 22 2025
+
+- two tablets are damaged
+- Ray16 and Ray 33. Replacing. These are surface pro 3's.
+
+I replaced Ray16. Put it on the truck.
+
+Note. There are these 4 tablets that I left a note on here: "These need work"
+The touchscreen and rotation are not working on them. Tried to do ray16 on here first but did not work.
