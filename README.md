@@ -1000,3 +1000,15 @@ I replaced Ray16. Put it on the truck.
 
 Note. There are these 4 tablets that I left a note on here: "These need work"
 The touchscreen and rotation are not working on them. Tried to do ray16 on here first but did not work.
+
+## Sep 30 2025
+
+Setting up 2 tablets for wip49 and wip55
+
+setup is good. need guns to complete setup
+
+TODO: I need to disable the wifi settings and or settings period. The user is able to see the wifi password and access other settings.
+
+### attemping Polkit
+
+this has failed so far. need to dig deeper
