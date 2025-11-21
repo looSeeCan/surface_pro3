@@ -1012,3 +1012,32 @@ TODO: I need to disable the wifi settings and or settings period. The user is ab
 ### attemping Polkit
 
 this has failed so far. need to dig deeper
+
+## Oct 14th 2025
+
+wip18 is reported to malfunction. "I have to keep rebooting, more than normal"
+Replaced with an extra I had up here: MG-TURR-TB-RAY33
+
+# Oct 20 2025
+
+since last update. Steve Kohl worked on wip18 to adjust wifi capabillities. Not sure if it was successful or not, but the device was damaged today.
+Replacing with: MG-FORK-TB-SPARE1
+Also going to attempt gnome extnetion manager update which gives me an option to disable gestures. this would totally lockdown the swipe down gesture that would expose the settings tray:
+
+timeshift
+remove the first extension manager, because when I install it has two extension managers. so the reason why I could not uninstall this one in other attempts was because its not the manager, its:
+gnome-shell-extension-prefs
+
+    to uninstall:
+    sudo apt remove gnome-shell-extension-prefs
+    sudo apt autoremove
+
+sudo apt update
+sudo apt install gnome-shell-extension-manager
+
+in extension manager > browse > Disable Gesutres 2021 > install
+
+reboot
+
+can not swipe out of the window at all anymore.
+lets see if this will work for odoo.
