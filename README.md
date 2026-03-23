@@ -1041,3 +1041,9 @@ reboot
 
 can not swipe out of the window at all anymore.
 lets see if this will work for odoo.
+
+# March 3 2026
+
+MG-FORK-TB-SPARE1
+there was an issue with this device. On the software, it was not showing the updates that were being scanned. All other tablets were seeing the updates, so pretty sure it was specific to device.
+also I see in "dhcp" that I have a "SPARE2". so i am pretty sure my naming conventions is to just asc up with the numbers and not replacing them.
