@@ -1047,3 +1047,10 @@ lets see if this will work for odoo.
 MG-FORK-TB-SPARE1
 there was an issue with this device. On the software, it was not showing the updates that were being scanned. All other tablets were seeing the updates, so pretty sure it was specific to device.
 also I see in "dhcp" that I have a "SPARE2". so i am pretty sure my naming conventions is to just asc up with the numbers and not replacing them.
+
+# April 07, 2026
+
+MG-FORK-TB-CRT
+damaged device. removed from dhcp and replaced with MG-FORK-TB-SPARE4
+
+note\* dhcp has two insatnces of: MG-CLAMP-TB-WIP32
