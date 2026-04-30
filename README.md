@@ -1054,3 +1054,8 @@ MG-FORK-TB-CRT
 damaged device. removed from dhcp and replaced with MG-FORK-TB-SPARE4
 
 note\* dhcp has two insatnces of: MG-CLAMP-TB-WIP32
+
+# April 30, 2026
+
+running out of tablets. ordered one surface pro 3 for testing.
+need to attempt to not order pro5's.
