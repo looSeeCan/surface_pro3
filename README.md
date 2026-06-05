@@ -1059,3 +1059,68 @@ note\* dhcp has two insatnces of: MG-CLAMP-TB-WIP32
 
 running out of tablets. ordered one surface pro 3 for testing.
 need to attempt to not order pro5's.
+
+# June 5, 2026
+
+Shrinking Ubuntu LVM on Surface Pro 3 for 64GB Clonezilla Deployment
+
+Purpose: Shrink the master image from ~116GB down to 40GB so it can be restored to 64GB Surface Pro 3 devices.
+
+Key difference from Pro 5: Surface Pro 3 uses a SATA drive (sda) not NVMe (nvme0n1). All commands reference sda/sda3 instead.
+
+Pre-resize cleanup (required)
+Before resizing, two things were consuming excess space:
+
+Timeshift snapshots: 25GB — not needed in a master clone image
+Journal logs: 1.3GB
+Mount the filesystem and remove them:
+
+sudo vgchange -ay
+mkdir -p /mnt/ubuntu
+sudo mount /dev/ubuntu-vg/ubuntu-lv /mnt/ubuntu
+sudo rm -rf /mnt/ubuntu/timeshift/
+sudo rm -rf /mnt/ubuntu/var/log/journal/
+sudo umount /mnt/ubuntu
+After cleanup, actual usage dropped to ~12GB — well under the 40G target.
+
+Resize sequence
+Must be done in this order to avoid data loss:
+
+# 1. Check filesystem integrity
+
+sudo e2fsck -fy /dev/ubuntu-vg/ubuntu-lv
+
+# 2. Shrink filesystem
+
+sudo resize2fs /dev/ubuntu-vg/ubuntu-lv 40G
+
+# 3. Shrink logical volume
+
+echo y | sudo lvreduce -y -L 40G /dev/ubuntu-vg/ubuntu-lv
+
+# 4. Shrink physical volume
+
+echo y | sudo pvresize --setphysicalvolumesize 45G /dev/sda3
+
+# 5. Shrink partition
+
+echo 'Yes' | sudo parted ---pretend-input-tty /dev/sda resizepart 3 48000MB
+
+# 6. Reconcile LVM metadata
+
+sudo pvresize /dev/sda3
+Final layout
+
+sda
+├─sda1 1G EFI System Partition
+├─sda2 2G /boot
+└─sda3 41.7G LVM Physical Volume
+└─ubuntu-lv 40G
+
+PV Size ≈ 41.65G
+VG Size ≈ 41.65G
+LV Size = 40G
+Notes
+This was performed remotely over SSH into the Clonezilla live shell
+Rebooted successfully — kiosk autostartd Chromium as expected
+Image name: img_SurfacePro3_Kiosk_64GB_Compatible
