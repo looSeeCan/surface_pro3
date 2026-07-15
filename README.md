@@ -1173,6 +1173,7 @@ Boot time improved significantly after disabling cloud-init.
 GNOME Remote Desktop (System > Remote Desktop > Desktop Sharing) is working and persisting across reboots. The GNOME keyring issue that was causing credentials to reset after reboot appears to have resolved on its own — possibly a recent Ubuntu update. Monitor going forward. If it drops again, fix is:
 
 Add to `/etc/pam.d/gdm-autologin`:
+
 ```
 auth optional pam_gnome_keyring.so
 session optional pam_gnome_keyring.so auto_start
@@ -1184,3 +1185,9 @@ session optional pam_gnome_keyring.so auto_start
 - `gnome-shell-extension-prefs` — kept, may be doing something
 - Chromium autostart — no `--user-data-dir=/tmp/kiosk-profile`. Intentional. Singleton files are wiped manually after hostname changes instead.
 - WiFi password visible in settings — low risk on internal network, left alone
+
+# July 15, 2026
+
+Been keeping a naming convention and keeping track of it on DHCP, but we are moving to a new wifi and ip/scope convention.
+The last device = MG-FORK-TB-SPARE18
+The very next device should be = .....SPARE19
