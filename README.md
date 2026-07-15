@@ -1124,3 +1124,63 @@ Notes
 This was performed remotely over SSH into the Clonezilla live shell
 Rebooted successfully — kiosk autostartd Chromium as expected
 Image name: img_SurfacePro3_Kiosk_64GB_Compatible
+
+# June 5-8, 2026
+
+## Kiosk Device Audit and Cleanup
+
+Performed a full audit of a running kiosk device via SSH. The following changes were made.
+
+### Removed arandelluser
+
+`arandelluser` was the original account created during the Ubuntu Server install (uid 1000). It was unused — all SSH, Ansible, and admin work has been done as `kiosk`. Having an unused account with sudo access is unnecessary.
+
+```bash
+sudo userdel -r arandelluser
+```
+
+Rebooted and confirmed autologin and Chromium autostart were unaffected. Fork truck drivers are not impacted — they never log in.
+
+### Removed old Chromium snap revision
+
+Snap keeps old revisions after updates. Two Chromium versions were present (3423 old, 3444 current).
+
+```bash
+sudo snap remove chromium --revision 3423
+```
+
+### Disabled unnecessary services
+
+The following services were enabled but serve no purpose on a kiosk device:
+
+- `cloud-init` — designed for cloud VM provisioning (AWS, Azure). On bare metal it sits at boot waiting for a metadata server that does not exist. This was causing the long pause during boot.
+- `open-iscsi` — network storage protocol
+- `cups` — printing
+- `lxd-installer` — Linux container management
+
+```bash
+sudo systemctl disable cloud-init cloud-init-local cloud-config cloud-final
+sudo systemctl disable open-iscsi
+sudo systemctl disable snap.cups.cups-browsed
+sudo systemctl disable snap.cups.cupsd
+sudo systemctl disable lxd-installer.socket
+```
+
+Boot time improved significantly after disabling cloud-init.
+
+### Remote Desktop
+
+GNOME Remote Desktop (System > Remote Desktop > Desktop Sharing) is working and persisting across reboots. The GNOME keyring issue that was causing credentials to reset after reboot appears to have resolved on its own — possibly a recent Ubuntu update. Monitor going forward. If it drops again, fix is:
+
+Add to `/etc/pam.d/gdm-autologin`:
+```
+auth optional pam_gnome_keyring.so
+session optional pam_gnome_keyring.so auto_start
+```
+
+### Items reviewed but left as-is
+
+- `gnome-control-center` — kept installed. Needed for supervisor/IT troubleshooting (WiFi, Bluetooth, network)
+- `gnome-shell-extension-prefs` — kept, may be doing something
+- Chromium autostart — no `--user-data-dir=/tmp/kiosk-profile`. Intentional. Singleton files are wiped manually after hostname changes instead.
+- WiFi password visible in settings — low risk on internal network, left alone
